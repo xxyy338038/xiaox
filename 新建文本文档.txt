@@ -1,0 +1,34 @@
+ng-click="sidebarCollapse()"
+
+$scope.$on('sidebarCollapse', function(d,data) {
+	        $scope.$broadcast('sidebarCollapsed', 'sidebarCollapsed');
+	    });
+
+$scope.sidebarCollapse = function() {
+			$scope.$emit('sidebarCollapse', 'sidebarCollapse');
+		}; 
+
+$scope.$on('sidebarCollapsed', function(d,data) {
+		if($scope.gridregNum) {
+			$scope.gridregNum.$gridServices.DomUtilityService.RebuildGrid(
+					$scope.gridregNum.$gridScope, $scope.gridregNum.ngGrid);
+		}
+    });
+
+
+
+.cursor {
+	cursor : pointer;
+}
+
+.gridStyle {
+	margin: 0 auto;
+    border: 1px solid rgb(212,212,212);
+    width: 100%;
+    height: 400px;
+}
+
+.toolbarStyle {
+	margin: 5px auto;
+	width: 100%;
+}
